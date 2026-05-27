@@ -4,10 +4,13 @@ services:
     container_name: acsm-bot
     restart: unless-stopped
     environment:
-      - OUTPUT_DIR=/output
-      - DISPLAY=${DISPLAY}
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - CALIBRE_CONFIG_DIRECTORY=/config
     volumes:
       - ./config:/config
       - ./output:/output
-      - /tmp/.X11-unix:/tmp/.X11-unix:ro
-      - ${XAUTHORITY:-~/.Xauthority}:/root/.Xauthority:ro
+    ports:
+      - "8080:8080"
+      - "8082:8082"
