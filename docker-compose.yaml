@@ -1,0 +1,13 @@
+services:
+  acsm-bot:
+    build: .
+    container_name: acsm-bot
+    restart: unless-stopped
+    environment:
+      - OUTPUT_DIR=/output
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - ./config:/config
+      - ./output:/output
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - ${XAUTHORITY:-~/.Xauthority}:/root/.Xauthority:ro
